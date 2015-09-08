@@ -93,7 +93,8 @@
         controller: 'userProfileController',
         controllerAs: 'user',
         resolve: {
-          getProfilePrep: getProfileService
+          getProfilePrep: getProfileService,
+          getPublicUserReviewsServicePrep: getPublicUserReviewsService
         }
       })
       .state('eventDetail', {
@@ -111,7 +112,8 @@
         controller: 'profilePageController',
         controllerAs: 'user',
         resolve: {
-          getUserProfilePrep: getUserProfileService
+          getUserProfilePrep: getUserProfileService,
+          getUserReviewsServicePrep: getUserReviewsService
         }
       })      
       
@@ -124,6 +126,10 @@
       function getProfileService ($http, $stateParams, usersService) {
         return usersService.getUserProfile($stateParams.username);
       }
+      function getPublicUserReviewsService ($http, $stateParams, reviewService) {
+        console.log($stateParams.username);
+        return reviewService.getPublicReviews($stateParams.username);
+      }
       function getEvent($http, $stateParams, eventsService){
         return eventsService.getEvent($stateParams.eventId);
       }
@@ -134,7 +140,10 @@
         return usersService.getHostedEvents();
       }
       function getUserProfileService ($http, usersService) {
-        return usersService.getProfile()
+        return usersService.getProfile();
+      }
+      function getUserReviewsService (reviewService) {
+        return reviewService.getReviews();
       }
 
       $httpProvider.interceptors.push('AttachTokens');

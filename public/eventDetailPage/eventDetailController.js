@@ -2,7 +2,6 @@
 
   angular.module("app.eventDetail", [])
     .controller('eventDetailController', eventDetailController);
-
   eventDetailController.$inject = ['$state', 'eventsService', 'getEvent'];
 
   function eventDetailController($state, eventsService, getEvent){
@@ -11,6 +10,7 @@
     vm.join = join;
 
     vm.details = getEvent.data;
+    console.log('vm.details', vm.details);
 
     /////////////////////////
 
